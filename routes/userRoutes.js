@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// user login
+// login
 router.post("/login", async (req, res) => {
     try {
         const userDB = await User.findOne({
@@ -33,16 +33,16 @@ router.post("/login", async (req, res) => {
 
         if (!userDB) {
             res.status(400).json({
-                message: "Incorrect email or password. Please try again!",
+                message: "Incorrect email or password. Please try again",
             });
             return;
         }
-        //checks that password is valid using custom instance method in ./models/user.js
+        //validate password
         const validPassword = await userDB.checkPassword(req.body.password);
 
         if (!validPassword) {
             res.status(400).json({
-                message: "Incorrect email or password. Please try again!",
+                message: "Incorrect email or password. Please try again",
             });
             return;
         }
@@ -50,11 +50,11 @@ router.post("/login", async (req, res) => {
         req.session.save(() => {
             req.session.loggedIn = true;
             req.session.loggedInUserData = userDB;
-            console.log("🚀", req.session.cookie);
+            console.log("-SAVED-", req.session.cookie);
 
             res.status(200).json({
                 user: userDB,
-                message: "You are now logged in!",
+                message: "Alright we're in!",
             });
         });
     } catch (err) {
