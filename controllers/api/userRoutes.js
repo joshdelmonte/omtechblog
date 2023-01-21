@@ -4,13 +4,14 @@ const { User } = require("../../models");
 // CREATE new user
 router.post("/", async (req, res) => {
     try {
-        //ORIGINALLY "dbUserData"
+        console.log("req.body", req.body);
         const userDB = await User.create({
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            isAdmin: req.body.is_admin,
+            
         });
+        console.log("userDB", userDB);
         req.session.save(() => {
             req.session.loggedIn = true;
             req.session.loggedInUserData = userDB;
@@ -33,20 +34,20 @@ router.post("/login", async (req, res) => {
 
         if (!userDB) {
             res.status(400).json({
-                message: "Incorrect email or password. Please try again",
+                message: "Incorrect user input. Please try again",
             });
             return;
         }
         //validate password
-        const validPassword = await userDB.checkPassword(req.body.password);
+        const validPassword = await userDB.validatePassword(req.body.password);
 
         if (!validPassword) {
             res.status(400).json({
-                message: "Incorrect email or password. Please try again",
+                message: "Incorrect user input. Please try again",
             });
             return;
         }
-        //save data to session for use elsewhere
+        //save data
         req.session.save(() => {
             req.session.loggedIn = true;
             req.session.loggedInUserData = userDB;
@@ -63,7 +64,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// User Logout
+//Logout
 router.post("/logout", (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -75,3 +76,4 @@ router.post("/logout", (req, res) => {
 });
 
 module.exports = router;
+

@@ -1,52 +1,42 @@
-<section class="hero has-background-grey-lighter is-medium">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                    <form class="box">
-                        <div class="field">
-                            <label class="label">Email or Username</label>
-                            <div class="control has-icons-left">
-                                <input
-                                    type="email"
-                                    placeholder="e.g. jondoe@gmail.com"
-                                    class="input username-input"
-                                    -EMAIL-
-                                />
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-envelope"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Password</label>
-                            <div class="control has-icons-left">
-                                <input type="password"
-                                    placeholder="******"
-                                    class="input password-input"
-                                    -PASSWORD-
-                                />
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-lock"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field is-grouped is-grouped-right">
-                            <p class="control">
-                                <p class="login-button">
-                                <a class="button is-success">
-                                    Login
-                                </a>
-                            </p>
-                                <a class="signup-button" href="/signup/">
-                                    Sign up
-                                </a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Login</h2>
+
+    <form class="form login-form">
+      <div class="form-group">
+        <label for="email-login">email:</label>
+        <input class="form-input" type="text" id="email-login" />
+      </div>
+      <div class="form-group">
+        <label for="password-login">password:</label>
+        <input class="form-input" type="password" id="password-login" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">login</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h2>Signup</h2>
+
+    <form class="form signup-form">
+      <div class="form-group">
+        <label for="name-signup">name:</label>
+        <input class="form-input" type="text" id="username-signin" />
+      </div>
+      <div class="form-group">
+        <label for="email-signup">email:</label>
+        <input class="form-input" type="text" id="email-signin" />
+      </div>
+      <div class="form-group">
+        <label for="password-signup">password:</label>
+        <input class="form-input" type="password" id="password-signin" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">signup</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script src="/js/login.js"></script>

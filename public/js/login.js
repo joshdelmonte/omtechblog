@@ -27,11 +27,12 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-signin').value.trim();
   
     if (username && email && password) {
-      const response = await fetch('/api/users', {
+      console.log(email, password, username)
+      const response = await fetch('/api/users/', {
         method: 'POST',
-        body: JSON.stringify({ username, email, password }),
         headers: { 'Content': 'application/json' },
-      });
+        body: JSON.stringify({ username, email, password }),
+      }); console.log(response)
   
       if (response.ok) {
         document.location.replace('/');
