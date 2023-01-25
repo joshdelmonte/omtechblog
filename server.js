@@ -3,14 +3,18 @@ const express = require("express");
 const expressHandlebars = require("express-handlebars");
 const session = require("express-session");
 const path = require("path");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const sequelize = require("./config/connection");
+
 const controllers = require("./controllers");
 const handlebars = expressHandlebars.create({ });
+const helpers = require("./utils/helpers");
+
 
 // Set up express and PORT
 const app = express(); 
 const PORT = process.env.PORT || 3001;
+
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const sequelize = require("./config/connection");
 
 // Set up sessions
 const sezion = {
@@ -36,5 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(controllers);
 
 sequelize.sync({ force: false }).then(() => {
+    //What's wrong here?
+    
     app.listen(PORT, () => console.log("Now listening: " + PORT));
 });

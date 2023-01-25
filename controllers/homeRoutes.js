@@ -21,5 +21,8 @@ router.get("/login", (req, res) => {
     res.render("login", { layout: "main" });
 });
 
+// router.get("/post/:id", (req, res) => {
+
+
 
 module.exports = router;

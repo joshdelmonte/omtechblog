@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
         console.log("userDB", userDB);
         req.session.save(() => {
             req.session.loggedIn = true;
-            req.session.loggedInUserData = userDB;
+            req.session.userId = userDB.id;
             return res.status(200).json(userDB);
         });
     } catch (err) {
@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
             return;
         }
         //validate password
-        const validPassword = await userDB.validatePassword(req.body.password);
+        const validPassword = await userDB.checkPassword(req.body.password);
 
         if (!validPassword) {
             res.status(400).json({
@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
         //save data
         req.session.save(() => {
             req.session.loggedIn = true;
-            req.session.loggedInUserData = userDB;
+            req.session.userId = userDB.id;
             console.log("-SAVED-", req.session.cookie);
 
             res.status(200).json({

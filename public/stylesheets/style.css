@@ -1,0 +1,26 @@
+header{
+    background-color: blue;
+    color: green;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+main{
+    background-color: green;
+    color: yellow;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer{
+    background-color: blue;
+    color: green;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
