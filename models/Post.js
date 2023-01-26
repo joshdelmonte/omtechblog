@@ -12,8 +12,9 @@ Post.init(
             primaryKey: true,
             autoIncrement: true,
           },
-            title: DataTypes.STRING,
-            comment: DataTypes.STRING,
+        title: {type: DataTypes.STRING,},
+        comment: {type: DataTypes.STRING,},
+
           user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

@@ -2,13 +2,13 @@ async function newFormHandler(event) {
     event.preventDefault();
 
     const title = document.querySelector('input[name="post-title"]').value.trim();
-    const content = document.querySelector('textarea[name="content"]').value.trim();
+    const comment = document.querySelector('textarea[id="post-script"]').value.trim();
 
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
             title,
-            content
+            comment
         }),
         headers: {
             'Content-Type': 'application/json'

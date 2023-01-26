@@ -6,7 +6,7 @@ router.post("/", async (req, res) => {
     try {
         const postDB = await Post.create({
             title: req.body.title,
-            content: req.body.content,
+            comment: req.body.comment,
             user_id: req.session.userId,
         });
         return res.status(200).json(postDB);
@@ -15,6 +15,8 @@ router.post("/", async (req, res) => {
         return res.status(500).json(err);
     }
 });
+
+
 
 router.put("/:id", async (req, res) => {
     try {
