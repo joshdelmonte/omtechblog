@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const auth = require("../utils/auth");
 const { Post, User, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
@@ -33,7 +33,7 @@ router.get("/signup", (req, res) => {
     res.render("signup", { layout: "main" });
 });
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", auth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.userId, {
             attributes: { exclude: ["password"] },
@@ -70,7 +70,16 @@ router.get("/edit/:id", async (req, res) => {
         res.status(500).json(err);
     }
 });
-
+//Logout
+router.get("/logout", (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.render("login")
+        });
+    } else {
+        res.status(404).end();
+    }
+});
 
 
 

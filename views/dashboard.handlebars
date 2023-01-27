@@ -16,19 +16,23 @@
   </form>
 </section>
 
-{{#if posts.length}}
+{{#if Posts.length}}
 <section>
   <h2>Your Posts</h2>
   <ol>
-    {{#each posts as |post|}}
+    {{#each Posts as |post|}}
+    {{log post}}
     <div>{{post.title}}</div>
-    <li>
-      {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-    </li>
+
+    <div>
+   <button type="button" class="delete-post-btn" id="submit" data-delete={{post.id}}>Delete</button>
+   
     {{/each}}
   </ol>
 </section>
 {{/if}}
 
 <script src="/js/post.js"></script>
+<script src="/js/edit.js"></script>
+
+{{!-- <script src="/js/dashboard.js"></script> --}}
